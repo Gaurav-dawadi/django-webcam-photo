@@ -3,6 +3,7 @@ from .random_generator import random_filename
 from django.shortcuts import render
 from django.conf import settings
 from io import BytesIO
+from PIL import Image
 import base64
 import re
 
@@ -17,12 +18,11 @@ def webcam(request):
         img_data = request.POST.get('captured-image')
         img_data = re.sub("^data:image/png;base64,", "", img_data)
         img_data = base64.b64decode(img_data)
-        # img_data = BytesIO(img_data)
+        img_data = BytesIO(img_data)
         print(img_data)
 
         filename = random_filename()+'.png'
-        f = open(settings.MEDIA_ROOT /filename, 'w')
-        f.write(str(img_data))
-        f.close()
+        image = Image.open(img_data)
+        image.save(settings.MEDIA_ROOT /filename) 
        
     return render(request, 'webcam.html')    
