@@ -1,9 +1,10 @@
 'use strict';
 
-const video = document.getElementById('video');
+const video  = document.getElementById('video');
 const canvas = document.getElementById('canvas');
-const snap = document.getElementById("snap");
+const snap   = document.getElementById('snap');
 const errorMsgElement = document.querySelector('span#errorMsg');
+const form = document.getElementById('the-form')
 
 const constraints = {
     video: {
@@ -36,4 +37,9 @@ snap.addEventListener("click", function() {
     context.drawImage(video, 0, 0, 640, 480);
 });
 
-var imgurl= canvas.toDataURL(`{% static 'saved_images/' %}`);
+var data = canvas.toDataURL('image/png');
+console.log(data);
+
+document.getElementById('cimg').value = canvas.toDataURL('image/png');
+document.form.submit();
+
