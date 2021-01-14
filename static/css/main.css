@@ -1,0 +1,16 @@
+.main-wrapper{
+    margin-top: 50px;
+}
+
+p{
+    font-weight: bold;
+}
+
+.main-header,p,.main-box{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+
+

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block js %}
+<script src="{% static 'js/webcam.js' %}"></script>
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <!-- <div class="main-wrapper">
+            <div class="main-header">
+                <h1>See in Webcam</h1>   
+            </div>
+            <div id="my_camera">
+            </div>
+            <div class="main-box">
+                <a href="" class="btn btn-info btn-lg m-3">Draw</a>
+                <input type=button value="Take Snapshot" onClick="take_snapshot()">
+                <a href="{% url 'home' %}" class="btn btn-danger btn-lg m-3">Back</a>
+            </div>
+        </div> -->
+
+        <div class="main-wrapper">
+            <p><span id="errorMsg"></span></p>
+            <div class="main-header">
+                <!-- Stream video via webcam -->
+                <div class="video-wrap">
+                    <video id="video" playsinline autoplay></video>
+                </div>
+            </div>
+            <div class="main-box">
+                <!-- Trigger canvas web API -->
+                <div class="controller">
+                    <button id="snap" class='btn btn-info btn-lg'>Capture</button>
+                </div>
+            </div>
+            <!-- Webcam video snapshot -->
+            <canvas id="canvas" width="640" height="480"></canvas>
+        </div>
+
+    </div>
+{% endblock %}
