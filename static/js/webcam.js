@@ -1,45 +1,25 @@
-'use strict';
-
+// Grab elements
 const video  = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const snap   = document.getElementById('snap');
 const errorMsgElement = document.querySelector('span#errorMsg');
-const form = document.getElementById('the-form')
 
-const constraints = {
-    video: {
-        width: 600, height: 500
-    }
-};
-
-// Access webcam
-async function init() {
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia(constraints);
-        handleSuccess(stream);
-    } catch (e) {
-        errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
-    }
+// Get access to the camera!
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({
+        video: true
+    }).then(function(stream) {
+        video.srcObject = stream;
+        video.play();
+    });
 }
 
-// Success
-function handleSuccess(stream) {
-    window.stream = stream;
-    video.srcObject = stream;
-}
 
-// Load init
-init();
-
-// Draw image
 var context = canvas.getContext('2d');
-snap.addEventListener("click", function() {
+
+document.getElementById("snap").addEventListener("click", function() {
     context.drawImage(video, 0, 0, 640, 480);
 });
 
-var data = canvas.toDataURL('image/png');
-console.log(data);
-
 document.getElementById('cimg').value = canvas.toDataURL('image/png');
-document.form.submit();
 
