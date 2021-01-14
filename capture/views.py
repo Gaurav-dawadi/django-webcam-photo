@@ -1,4 +1,5 @@
 from django.views.decorators.csrf import csrf_exempt
+from .random_generator import random_filename
 from django.shortcuts import render
 from django.conf import settings
 from io import BytesIO
@@ -19,7 +20,7 @@ def webcam(request):
         # img_data = BytesIO(img_data)
         print(img_data)
 
-        filename = 'webcam.png'
+        filename = random_filename()+'.png'
         f = open(settings.MEDIA_ROOT /filename, 'w')
         f.write(str(img_data))
         f.close()
