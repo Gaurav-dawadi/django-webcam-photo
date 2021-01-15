@@ -23,12 +23,22 @@
                         <a id="snap" class='btn btn-info btn-lg'>Capture</a>
                     </div>
                 </div>
-                <!-- Webcam video snapshot -->
-                <canvas id="canvas" width="640" height="480"></canvas>
 
-                <input type="hidden" name='captured-image' id='cimg'>
+                <!-- Webcam video snapshot -->
+                <div class='snapshot'>
+                    <div>
+                        <canvas id="canvas" width="640" height="480"></canvas>
+                    </div>
+                </div>
+                <div class='button-wrapper'>
+                    <div>
+                        <input type="hidden" name='captured-image' id='cimg'>
+                        <a class='btn btn-warning btn-lg' onclick="drawPolygon()">Draw</a>
+                        <button class='btn btn-success btn-lg'>Submit</button>
+                        <a class='btn btn-danger btn-lg' onclick="ClearCanvas()">Clear</a>
+                    </div>
+                </div>
             </div>
-            <button>Submit</button>
         </form>
     </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.views.decorators.csrf import csrf_exempt
 from .random_generator import random_filename
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.conf import settings
 from io import BytesIO
 from PIL import Image
@@ -24,5 +24,6 @@ def webcam(request):
         filename = random_filename()+'.png'
         image = Image.open(img_data)
         image.save(settings.MEDIA_ROOT /filename) 
-       
+        return redirect('home')
+  
     return render(request, 'webcam.html')    
